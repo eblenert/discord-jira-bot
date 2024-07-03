@@ -1,4 +1,4 @@
-import app from "./src/app";
+import app from "./app";
 
 const initServer = async () => {
   app.listen(8000, () => {
