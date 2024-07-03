@@ -6,6 +6,8 @@ COPY . .
 
 RUN npm install
 
-CMD ["node", "./bin/www"]
+RUN npm run build
+
+CMD ["node", "./dist/index.js"]
 
 EXPOSE 3000
