@@ -13,8 +13,6 @@ export const jiraHmacAuth: RequestHandler = (req, res, next) => {
     throw new Error("Access denied.");
   }
 
-  console.log(req.body, "BODY");
-  console.log(JSON.stringify(req.body), "STRING BODY");
   const computedHmac =
     "sha256=" +
     crypto
@@ -23,8 +21,6 @@ export const jiraHmacAuth: RequestHandler = (req, res, next) => {
       .digest("hex");
   const receivedHmac = req.headers[hmacHeader] as string;
 
-  console.log(computedHmac, "computed hmac");
-  console.log(receivedHmac, "received hmac");
   if (computedHmac !== receivedHmac) {
     throw new Error("Access denied.");
   }
