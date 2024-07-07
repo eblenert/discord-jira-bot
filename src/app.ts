@@ -6,6 +6,7 @@ import logger from "morgan";
 import indexRouter from "./routes";
 import { jiraHmacAuth } from "./middlewares/jira-hmac";
 import { genericErrorHandler } from "./handlers/generic-error-handler";
+import { jiraEventTypeFilter } from "./middlewares/jira-event-type-filter";
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(jiraHmacAuth);
+app.use(jiraEventTypeFilter);
 
 app.use("/", indexRouter);
 
