@@ -2,6 +2,6 @@ import { Issue } from "./issue";
 
 export class IssueInToPlay extends Issue {
   constructor(fields: any) {
-    super(`Wants to play ${fields.summary}`, fields.asignee.displayName);
+    super(`${fields.asignee.displayName} wants to play ${fields.summary}`);
   }
 }
