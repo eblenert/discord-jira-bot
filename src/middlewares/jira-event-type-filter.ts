@@ -5,7 +5,7 @@ export const jiraEventTypeFilter: RequestHandler = (req, res, next) => {
 
   switch (issueType) {
     case "issue_created":
-    case "issue_updated":
+    case "issue_generic":
       next();
       break;
     default:
