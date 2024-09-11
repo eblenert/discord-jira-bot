@@ -5,5 +5,5 @@ export enum Status {
   Playing = "Playing",
   Paused = "Paused",
   Abandoned = "Abandoned",
-  Done = "Done",
+  Done = "D0ne",
 }

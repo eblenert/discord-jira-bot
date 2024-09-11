@@ -11,46 +11,48 @@ import { IssueDone } from "./issue.done";
 export class IssueFactory {
   createIssue(input: JiraWebhook) {
     const status = this.getStatus(input);
+    const key = this.getKey(input);
+
     switch (status) {
       case Status.ToBeReleased: {
-        return new IssueToBeReleased(input.issue.fields);
+        return new IssueToBeReleased(key, input.issue.fields);
       }
       case Status.Wishlist: {
-        return new IssueInWishlist(input.issue.fields);
+        return new IssueInWishlist(key, input.issue.fields);
       }
 
       case Status.ToPlay: {
-        return new IssueInToPlay(input.issue.fields);
+        return new IssueInToPlay(key, input.issue.fields);
       }
 
       case Status.Playing: {
-        return new IssueInPlaying(input.issue.fields);
+        return new IssueInPlaying(key, input.issue.fields);
       }
 
       case Status.Paused: {
-        return new IssuePaused(input.issue.fields);
+        return new IssuePaused(key, input.issue.fields);
       }
 
       case Status.Abandoned: {
-        return new IssueAbandoned(input.issue.fields);
+        return new IssueAbandoned(key, input.issue.fields);
       }
 
       case Status.Done: {
-        return new IssueDone(input.issue.fields);
+        return new IssueDone(key, input.issue.fields);
       }
 
       default: {
-        console.log(`Issue status ${status} unknown`);
+        console.log(`Issue ${key} status ${status} unknown`);
         return null;
       }
     }
   }
 
   private getStatus(webhook: JiraWebhook): string {
-    const statusObj = webhook.changelog.items.find(
-      (item) => item.field.toLowerCase() === "status"
-    );
+    return webhook.issue.fields.status.name;
+  }
 
-    return statusObj ? statusObj.toString : webhook.issue.fields.status.name;
+  private getKey(webhook: JiraWebhook): string {
+    return webhook.issue.key;
   }
 }

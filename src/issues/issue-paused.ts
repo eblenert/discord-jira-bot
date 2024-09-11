@@ -1,7 +1,8 @@
+import { JiraWebhook } from "types/jira-webhook";
 import { Issue } from "./issue";
 
 export class IssuePaused extends Issue {
-  constructor(fields: any) {
-    super(`${fields.assignee.displayName} paused ${fields.summary}`);
+  constructor(key: string, fields: JiraWebhook['issue']['fields']) {
+    super(key, `${fields.assignee.displayName} paused ${fields.summary}`);
   }
 }

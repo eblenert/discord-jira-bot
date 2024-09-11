@@ -5,6 +5,11 @@ import { environment } from "../environments";
 const hmacHeader = "x-hub-signature";
 
 export const jiraHmacAuth: RequestHandler = (req, res, next) => {
+  if (environment.IS_DEV) {
+    next();
+    return;
+  }
+
   if (!req.headers[hmacHeader] || req.headers[hmacHeader] === "") {
     throw new Error("Access denied.");
   }

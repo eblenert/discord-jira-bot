@@ -7,6 +7,7 @@ const jestConfig: JestConfigWithTsJest = {
   preset: "ts-jest",
   testEnvironment: "node",
   rootDir: "./src",
+  setupFilesAfterEnv: ["dotenv/config"],
 };
 
 export default jestConfig;

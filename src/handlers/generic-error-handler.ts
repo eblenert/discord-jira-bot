@@ -4,7 +4,7 @@ export const genericErrorHandler: ErrorRequestHandler = (
   err,
   req,
   res,
-  next
+  _next
 ) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
