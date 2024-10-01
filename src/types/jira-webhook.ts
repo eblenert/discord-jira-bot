@@ -146,3 +146,8 @@ type JiraChangelogItem = {
   to: string;
   toString: string;
 };
+
+export type IssueProps = {
+  name: string;
+  text: string;
+};

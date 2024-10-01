@@ -13,32 +13,56 @@ export class IssueFactory {
     const status = this.getStatus(input);
     const key = this.getKey(input);
 
+    const name = input.user.displayName;
+    const text = input.issue.fields.summary;
+
     switch (status) {
       case Status.ToBeReleased: {
-        return new IssueToBeReleased(key, input.issue.fields);
+        return new IssueToBeReleased(key, {
+          name,
+          text,
+        });
       }
       case Status.Wishlist: {
-        return new IssueInWishlist(key, input.issue.fields);
+        return new IssueInWishlist(key, {
+          name,
+          text,
+        });
       }
 
       case Status.ToPlay: {
-        return new IssueInToPlay(key, input.issue.fields);
+        return new IssueInToPlay(key, {
+          name,
+          text,
+        });
       }
 
       case Status.Playing: {
-        return new IssueInPlaying(key, input.issue.fields);
+        return new IssueInPlaying(key, {
+          name,
+          text,
+        });
       }
 
       case Status.Paused: {
-        return new IssuePaused(key, input.issue.fields);
+        return new IssuePaused(key, {
+          name,
+          text,
+        });
       }
 
       case Status.Abandoned: {
-        return new IssueAbandoned(key, input.issue.fields);
+        return new IssueAbandoned(key, {
+          name,
+          text,
+        });
       }
 
       case Status.Done: {
-        return new IssueDone(key, input.issue.fields);
+        return new IssueDone(key, {
+          name,
+          text,
+        });
       }
 
       default: {

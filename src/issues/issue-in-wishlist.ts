@@ -1,8 +1,8 @@
-import { JiraWebhook } from "types/jira-webhook";
+import { IssueProps } from "types/jira-webhook";
 import { Issue } from "./issue";
 
 export class IssueInWishlist extends Issue {
-  constructor(key: string, fields: JiraWebhook['issue']['fields']) {
-    super(key, `${fields.assignee.displayName} added ${fields.summary} to wishlist`);
+  constructor(key: string, fields: IssueProps) {
+    super(key, `${fields.name} added ${fields.text} to wishlist`);
   }
 }

@@ -1,8 +1,8 @@
-import { JiraWebhook } from "types/jira-webhook";
+import { IssueProps } from "types/jira-webhook";
 import { Issue } from "./issue";
 
 export class IssueInPlaying extends Issue {
-  constructor(key: string, fields: JiraWebhook['issue']['fields']) {
-    super(key, `${fields.assignee.displayName} started playing ${fields.summary}`);
+  constructor(key: string, fields: IssueProps) {
+    super(key, `${fields.name} started playing ${fields.text}`);
   }
 }
